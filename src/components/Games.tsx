@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import NumberSequenceGame from './games/math/NumberSequenceGame'
 import TreeHeightGame from './games/logic/TreeHeightGame'
 import AnimalClassificationGame from './games/world/AnimalClassificationGame'
@@ -54,7 +53,6 @@ const Games: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<Game[] | null>(null)
     const [currentGameIndex, setCurrentGameIndex] = useState(0)
     const [showMenu, setShowMenu] = useState(false)
-    const navigate = useNavigate()
 
     const handleCategorySelect = (games: Game[]) => {
         setSelectedCategory(games)
@@ -112,12 +110,6 @@ const Games: React.FC = () => {
                     className="block w-full px-4 py-2 mb-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200"
                 >
                     Главное меню
-                </button>
-                <button
-                    onClick={() => navigate('/')}
-                    className="block w-full px-4 py-2 mb-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-200"
-                >
-                    Выбор персонажа
                 </button>
                 <button
                     onClick={() => setShowMenu(false)}
