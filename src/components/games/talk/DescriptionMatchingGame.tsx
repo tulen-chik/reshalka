@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 interface Item {
     id: string
@@ -39,7 +38,6 @@ const DescriptionMatchingGame: React.FC<DescriptionMatchingGameProps> = ({ onCom
     const [descriptions, setDescriptions] = useState<Description[]>(initialDescriptions)
     const [selectedItem, setSelectedItem] = useState<Item | null>(null)
     const [showResult, setShowResult] = useState(false)
-    const navigate = useNavigate()
 
     const handleItemClick = (item: Item) => {
         setSelectedItem(item)

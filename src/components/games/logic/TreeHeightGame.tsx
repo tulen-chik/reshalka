@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import GameProps from "@/types/GameProps";
 
 const TreeHeightGame: React.FC<GameProps> = ({ onComplete }) => {
     const [tallestTree, setTallestTree] = useState<string>('')
     const [shortestTree, setShortestTree] = useState<string>('')
     const [showResult, setShowResult] = useState<boolean>(false)
-    const navigate = useNavigate()
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()

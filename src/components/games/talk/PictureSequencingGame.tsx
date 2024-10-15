@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import GameProps from "@/types/GameProps"
 
 interface Picture {
@@ -21,7 +20,6 @@ const PictureSequencingGame: React.FC<GameProps> = ({ onComplete }) => {
     const [pictures, setPictures] = useState<Picture[]>(initialPictures)
     const [selectedNumber, setSelectedNumber] = useState<number | null>(null)
     const [showResult, setShowResult] = useState(false)
-    const navigate = useNavigate()
 
     const handleNumberClick = (number: number) => {
         setSelectedNumber(number)

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 interface Shape {
     id: string
@@ -22,7 +21,6 @@ const ShapePatternGame: React.FC<ShapePatternGameProps> = ({ onComplete }) => {
     const [currentPattern, setCurrentPattern] = useState<(string | null)[]>(pattern)
     const [selectedShape, setSelectedShape] = useState<string | null>(null)
     const [showResult, setShowResult] = useState(false)
-    const navigate = useNavigate()
 
     const handleShapeClick = (shapeId: string) => {
         setSelectedShape(shapeId)

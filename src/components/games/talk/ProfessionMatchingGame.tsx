@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 interface Profession {
     id: string
@@ -42,7 +41,6 @@ const ProfessionMatchingGame: React.FC<ProfessionMatchingGameProps> = ({ onCompl
     const [descriptions, setDescriptions] = useState<Description[]>(initialDescriptions)
     const [selectedProfession, setSelectedProfession] = useState<Profession | null>(null)
     const [showResult, setShowResult] = useState(false)
-    const navigate = useNavigate()
 
     const handleProfessionClick = (profession: Profession) => {
         setSelectedProfession(profession)

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import GameProps from "@/types/GameProps";
 
 interface Animal {
@@ -38,7 +37,6 @@ const AnimalHomesGame: React.FC<GameProps> = ({ onComplete }) => {
     const [homes, setHomes] = useState<Home[]>(initialHomes)
     const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null)
     const [showResult, setShowResult] = useState(false)
-    const navigate = useNavigate()
 
     const handleAnimalClick = (animal: Animal) => {
         setSelectedAnimal(animal)

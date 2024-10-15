@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 interface SockCountingGameProps {
     onComplete: () => void
@@ -8,7 +7,6 @@ interface SockCountingGameProps {
 const SockCountingGame: React.FC<SockCountingGameProps> = ({ onComplete }) => {
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
     const [showResult, setShowResult] = useState(false)
-    const navigate = useNavigate()
 
     const question = {
         text: 'Сколько ребят смогут надеть эти носочки?',

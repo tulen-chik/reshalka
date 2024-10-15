@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 interface ChildrenCountingGameProps {
     onComplete: () => void
@@ -8,7 +7,6 @@ interface ChildrenCountingGameProps {
 const ChildrenCountingGame: React.FC<ChildrenCountingGameProps> = ({ onComplete }) => {
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
     const [showResult, setShowResult] = useState(false)
-    const navigate = useNavigate()
 
     const question = {
         text: 'Петя, Нина, Вова, Юра и Надя. Сколько всего детей?',
