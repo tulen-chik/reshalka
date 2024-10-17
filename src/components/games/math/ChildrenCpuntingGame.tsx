@@ -10,7 +10,7 @@ const ChildrenCountingGame: React.FC<ChildrenCountingGameProps> = ({ onComplete 
 
     const question = {
         text: 'Петя, Нина, Вова, Юра и Надя. Сколько всего детей?',
-        image: '/placeholder.svg?height=200&width=300',
+        image: '/math/children.png',
         answers: ['3', '4', '5', '6'],
         correctAnswer: '5'
     }

@@ -8,13 +8,13 @@ interface Picture {
 }
 
 const initialPictures: Picture[] = [
-    { id: 'pic1', image: '/placeholder.svg?height=150&width=200&text=🐱👃🕳️', order: null },
-    { id: 'pic2', image: '/placeholder.svg?height=150&width=200&text=🐱💭🐁', order: null },
-    { id: 'pic3', image: '/placeholder.svg?height=150&width=200&text=🐱➡️🕳️', order: null },
-    { id: 'pic4', image: '/placeholder.svg?height=150&width=200&text=🐱🏃‍♂️🐍', order: null },
+    { id: 'pic1', image: '/talk/1.png', order: null },
+    { id: 'pic2', image: '/talk/2.png', order: null },
+    { id: 'pic3', image: '/talk/3.png', order: null },
+    { id: 'pic4', image: '/talk/4.png', order: null },
 ]
 
-const correctOrder = ['pic1', 'pic2', 'pic3', 'pic4']
+const correctOrder = ['pic3', 'pic2', 'pic1', 'pic4']
 
 const PictureSequencingGame: React.FC<GameProps> = ({ onComplete }) => {
     const [pictures, setPictures] = useState<Picture[]>(initialPictures)

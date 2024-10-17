@@ -9,14 +9,14 @@ interface Animal {
 }
 
 const animals: Animal[] = [
-    { id: 1, name: 'Коза', isWild: false, imageUrl: '/placeholder.svg?height=100&width=100' },
-    { id: 2, name: 'Лошадь', isWild: false, imageUrl: '/placeholder.svg?height=100&width=100' },
-    { id: 3, name: 'Медведь', isWild: true, imageUrl: '/placeholder.svg?height=100&width=100' },
-    { id: 4, name: 'Волк', isWild: true, imageUrl: '/placeholder.svg?height=100&width=100' },
-    { id: 5, name: 'Лиса', isWild: true, imageUrl: '/placeholder.svg?height=100&width=100' },
-    { id: 6, name: 'Корова', isWild: false, imageUrl: '/placeholder.svg?height=100&width=100' },
-    { id: 7, name: 'Кот', isWild: false, imageUrl: '/placeholder.svg?height=100&width=100' },
-    { id: 8, name: 'Свинья', isWild: false, imageUrl: '/placeholder.svg?height=100&width=100' },
+    { id: 1, name: 'Коза', isWild: false, imageUrl: '/world/goat.png' },
+    { id: 2, name: 'Лошадь', isWild: false, imageUrl: '/world/horse.png' },
+    { id: 3, name: 'Медведь', isWild: true, imageUrl: '/world/bear.png' },
+    { id: 4, name: 'Волк', isWild: true, imageUrl: '/world/wolf.png' },
+    { id: 5, name: 'Лиса', isWild: true, imageUrl: '/world/lisa.png' },
+    { id: 6, name: 'Корова', isWild: false, imageUrl: '/world/cow.png' },
+    { id: 7, name: 'Кот', isWild: false, imageUrl: '/world/cat.png' },
+    { id: 8, name: 'Свинья', isWild: false, imageUrl: '/world/pig.png' },
 ];
 
 const AnimalClassificationGame: React.FC<GameProps> = ({ onComplete }) => {

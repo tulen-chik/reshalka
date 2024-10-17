@@ -13,10 +13,10 @@ interface Description {
 }
 
 const professions: Profession[] = [
-    { id: 'doctor', name: 'Врач', image: '/placeholder.svg?height=80&width=80&text=👨‍⚕️' },
-    { id: 'cook', name: 'Повар', image: '/placeholder.svg?height=80&width=80&text=👨‍🍳' },
-    { id: 'icecream', name: 'Продавец мороженого', image: '/placeholder.svg?height=80&width=80&text=🍦' },
-    { id: 'artist', name: 'Художник', image: '/placeholder.svg?height=80&width=80&text=👨‍🎨' },
+    { id: 'doctor', name: 'Врач', image: '/talk/vrach.png' },
+    { id: 'cook', name: 'Повар', image: '/talk/chef.png' },
+    { id: 'icecream', name: 'Продавец мороженого', image: '/talk/icecream.png' },
+    { id: 'artist', name: 'Художник', image: '/talk/painter.png' },
 ]
 
 const initialDescriptions: Description[] = [

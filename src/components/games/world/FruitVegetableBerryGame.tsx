@@ -9,14 +9,14 @@ interface Item {
 }
 
 const items: Item[] = [
-    { id: 1, name: 'Морковь', type: 'vegetable', imageUrl: '/carrot.svg' },
-    { id: 2, name: 'Клубника', type: 'berry', imageUrl: '/strawberry.svg' },
-    { id: 3, name: 'Яблоко', type: 'fruit', imageUrl: '/apple.svg' },
-    { id: 4, name: 'Виноград', type: 'fruit', imageUrl: '/grapes.svg' },
-    { id: 5, name: 'Груша', type: 'fruit', imageUrl: '/pear.svg' },
-    { id: 6, name: 'Капуста', type: 'vegetable', imageUrl: '/cabbage.svg' },
-    { id: 7, name: 'Апельсин', type: 'fruit', imageUrl: '/orange.svg' },
-    { id: 8, name: 'Картофель', type: 'vegetable', imageUrl: '/potato.svg' },
+    { id: 1, name: 'Морковь', type: 'vegetable', imageUrl: '/world/carrot.png' },
+    { id: 2, name: 'Клубника', type: 'berry', imageUrl: '/world/strawberry.png' },
+    { id: 3, name: 'Яблоко', type: 'fruit', imageUrl: '/world/apple.png' },
+    { id: 4, name: 'Виноград', type: 'berry', imageUrl: '/world/vino.png' },
+    { id: 5, name: 'Груша', type: 'fruit', imageUrl: '/world/pear.png' },
+    { id: 6, name: 'Капуста', type: 'vegetable', imageUrl: '/world/cabbage.png' },
+    { id: 7, name: 'Апельсин', type: 'fruit', imageUrl: '/world/orange.png' },
+    { id: 8, name: 'Картофель', type: 'vegetable', imageUrl: '/world/potato.png' },
 ];
 
 const FruitVegetableBerryGame: React.FC<GameProps> = ({ onComplete }) => {

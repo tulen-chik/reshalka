@@ -36,15 +36,15 @@ const TreeHeightGame: React.FC<GameProps> = ({ onComplete }) => {
                 </p>
                 <div className="flex justify-around mb-6">
                     <div className="text-center">
-                        <img src="/placeholder.svg?height=100&width=100" alt="Береза" className="w-24 h-24 mx-auto mb-2" />
+                        <img src="/logic/birch.png" alt="Береза" className="w-24 h-24 mx-auto mb-2" />
                         <p>1. Береза</p>
                     </div>
                     <div className="text-center">
-                        <img src="/placeholder.svg?height=100&width=100" alt="Дуб" className="w-24 h-24 mx-auto mb-2" />
+                        <img src="/logic/oak.png" alt="Дуб" className="w-24 h-24 mx-auto mb-2" />
                         <p>2. Дуб</p>
                     </div>
                     <div className="text-center">
-                        <img src="/placeholder.svg?height=100&width=100" alt="Елка" className="w-24 h-24 mx-auto mb-2" />
+                        <img src="/logic/elka.png" alt="Елка" className="w-24 h-24 mx-auto mb-2" />
                         <p>3. Елка</p>
                     </div>
                 </div>

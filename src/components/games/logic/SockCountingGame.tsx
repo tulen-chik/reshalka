@@ -10,7 +10,7 @@ const SockCountingGame: React.FC<SockCountingGameProps> = ({ onComplete }) => {
 
     const question = {
         text: 'Сколько ребят смогут надеть эти носочки?',
-        image: '/placeholder.svg?height=100&width=400',
+        image: '/logic/socks.png',
         answers: ['2', '3', '4', '5', '6'],
         correctAnswer: '4'
     }

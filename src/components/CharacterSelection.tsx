@@ -1,25 +1,44 @@
 import React from 'react'
+import Image from "next/image";
 
 interface CharacterSelectionProps {
     onSelectCharacter: (character: string) => void
 }
 
+interface Character {
+    id: string
+    name: string
+    image: string
+}
+
+const characters: Character[] = [
+    { id: 'cheb', name: 'Чебурашка', image: '/characters/cheb.png' },
+    { id: 'croc', name: 'Крокодил Гена', image: '/characters/croc.png' },
+    { id: 'hare', name: 'Заяц', image: '/characters/hare.png' },
+]
+
+
 const CharacterSelection: React.FC<CharacterSelectionProps> = ({ onSelectCharacter }) => {
-    const characters: string[] = ['Мальчик', 'Девочка', 'Робот']
 
     return (
         <>
             <div className="flex flex-col items-center justify-center min-h-screen bg-blue-100">
                 <h1 className="text-3xl font-bold mb-6">Выбери своего персонажа</h1>
-                <div className="flex flex-wrap justify-center gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     {characters.map((character) => (
-                        <button
-                            key={character}
-                            onClick={() => onSelectCharacter(character)}
-                            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200"
+                        <div
+                            key={character.id}
+                            className="flex flex-col items-center cursor-pointer transform transition-transform hover:scale-105"
+                            onClick={() => onSelectCharacter(character.name)}
                         >
-                            {character}
-                        </button>
+                            <Image
+                                src={character.image}
+                                alt={character.name}
+                                width={400}
+                                height={400}
+                                className="w-40 h-40 rounded-full border-4 border-white shadow-lg mb-2"
+                            />
+                        </div>
                     ))}
                 </div>
             </div>

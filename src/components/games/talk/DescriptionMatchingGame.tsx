@@ -13,9 +13,9 @@ interface Description {
 }
 
 const items: Item[] = [
-    { id: 'mouse', name: 'Мышь', image: '/placeholder.svg?height=80&width=80' },
-    { id: 'candy', name: 'Конфета', image: '/placeholder.svg?height=80&width=80' },
-    { id: 'apple', name: 'Яблоко', image: '/placeholder.svg?height=80&width=80' },
+    { id: 'mouse', name: 'Мышь', image: '/talk/mouse.png' },
+    { id: 'candy', name: 'Конфета', image: '/talk/candy.png' },
+    { id: 'apple', name: 'Яблоко', image: '/talk/apple.png' },
 ]
 
 const initialDescriptions: Description[] = [

@@ -13,10 +13,10 @@ interface Home {
 }
 
 const animals: Animal[] = [
-    { id: 'blackbird', name: 'Дрозд', image: '/placeholder.svg?height=80&width=80' },
-    { id: 'beaver', name: 'Бобр', image: '/placeholder.svg?height=80&width=80' },
-    { id: 'squirrel', name: 'Белка', image: '/placeholder.svg?height=80&width=80' },
-    { id: 'fox', name: 'Лиса', image: '/placeholder.svg?height=80&width=80' },
+    { id: 'blackbird', name: 'Дрозд', image: '/world/bird.png' },
+    { id: 'beaver', name: 'Бобр', image: '/world/beaver.png' },
+    { id: 'squirrel', name: 'Белка', image: '/world/squirrely.png' },
+    { id: 'fox', name: 'Лиса', image: '/world/lisa1.png' },
 ]
 
 const initialHomes: Home[] = [
@@ -78,7 +78,7 @@ const AnimalHomesGame: React.FC<GameProps> = ({ onComplete }) => {
         <div className="flex flex-col items-center justify-center min-h-screen bg-brown-100 p-4">
             <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl">
                 <h1 className="text-2xl font-bold mb-4 text-center">Подбери каждому животному свой домик</h1>
-                <div className="relative w-full h-96 bg-cover bg-center mb-6" style={{backgroundImage: "url('/placeholder.svg?height=400&width=600')"}}>
+                <div className="relative w-full h-96 bg-cover bg-center mb-6" style={{backgroundImage: "url('/world/homes.png')"}}>
                     {homes.map((home, index) => (
                         <button
                             key={home.id}

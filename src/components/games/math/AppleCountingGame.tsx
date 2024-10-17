@@ -10,7 +10,7 @@ const AppleCountingGame: React.FC<AppleCountingGameProps> = ({ onComplete }) => 
 
     const question = {
         text: 'Яблоки в саду поспели,\nМы отведать их успели\nПять румяных, наливных,\nДва с кислинкой.\nСколько их?',
-        image: '/placeholder.svg?height=200&width=200',
+        image: '/math/apples.png',
         answers: ['7', '8', '3'],
         correctAnswer: '7'
     }
