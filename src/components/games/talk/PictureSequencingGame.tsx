@@ -37,7 +37,7 @@ const PictureSequencingGame: React.FC<GameProps> = ({ onComplete }) => {
 
     const checkAnswers = () => {
         setShowResult(true)
-        const allCorrect = pictures.every((pic, index) => pic.order === index + 1)
+        const allCorrect = pictures.every((pic, index) => pic.id === correctOrder[pic.order! - 1])
         if (allCorrect) {
             setTimeout(() => {
                 onComplete()

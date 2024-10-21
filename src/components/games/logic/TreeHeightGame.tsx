@@ -1,30 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import GameProps from "@/types/GameProps";
 
 const TreeHeightGame: React.FC<GameProps> = ({ onComplete }) => {
     const [tallestTree, setTallestTree] = useState<string>('')
     const [shortestTree, setShortestTree] = useState<string>('')
     const [showResult, setShowResult] = useState<boolean>(false)
+    const [isCorrect, setIsCorrect] = useState<boolean>(false)
+    const [showIncorrectMessage, setShowIncorrectMessage] = useState<boolean>(false)
+
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+        if (showIncorrectMessage) {
+            timer = setTimeout(() => {
+                setShowIncorrectMessage(false)
+                setShowResult(false)
+                setTallestTree('')
+                setShortestTree('')
+            }, 2000)
+        }
+        return () => clearTimeout(timer)
+    }, [showIncorrectMessage])
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         setShowResult(true)
 
-        // Trigger completion if the answers are correct
-        if (isCorrect) {
+        const correct = tallestTree === '2' && shortestTree === '3'
+        setIsCorrect(correct)
+
+        if (correct) {
             setTimeout(() => {
-                onComplete(); // Call onComplete after a delay
-            }, 2000); // Optional delay to let users see the result message
+                setTallestTree("");
+                setShortestTree("");
+                onComplete()
+            }, 2000)
+        } else {
+            setShowIncorrectMessage(true)
         }
     }
-
-    const handlePlayAgain = () => {
-        setTallestTree('')
-        setShortestTree('')
-        setShowResult(false)
-    }
-
-    const isCorrect = tallestTree === '2' && shortestTree === '3'
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-green-100 p-4">
@@ -48,7 +61,7 @@ const TreeHeightGame: React.FC<GameProps> = ({ onComplete }) => {
                         <p>3. Елка</p>
                     </div>
                 </div>
-                {!showResult ? (
+                {!showResult || showIncorrectMessage ? (
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label htmlFor="tallest" className="block mb-1">Какое дерево самое высокое?</label>
@@ -85,6 +98,11 @@ const TreeHeightGame: React.FC<GameProps> = ({ onComplete }) => {
                             Самое высокое дерево - дуб (2), а самое низкое - елка (3).
                         </p>
                     </div>
+                )}
+                {showIncorrectMessage && (
+                    <p className="text-red-600 text-center mt-4">
+                        Ой! Кажется, ты что-то перепутал. Попробуй еще раз!
+                    </p>
                 )}
             </div>
         </div>

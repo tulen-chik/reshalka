@@ -65,6 +65,7 @@ const DescriptionMatchingGame: React.FC<DescriptionMatchingGameProps> = ({ onCom
         setShowResult(true)
         const allCorrect = descriptions.every((desc, index) => desc.item === correctPlacements[desc.id as keyof typeof correctPlacements])
         if (allCorrect) {
+            setDescriptions(initialDescriptions);
             setTimeout(() => {
                 onComplete()
             }, 2000)

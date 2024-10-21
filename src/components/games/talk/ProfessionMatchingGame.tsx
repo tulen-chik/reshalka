@@ -65,6 +65,7 @@ const ProfessionMatchingGame: React.FC<ProfessionMatchingGameProps> = ({ onCompl
         setShowResult(true)
         const allCorrect = descriptions.every((desc) => desc.profession === correctPlacements[desc.id as keyof typeof correctPlacements])
         if (allCorrect) {
+            setDescriptions(initialDescriptions);
             setTimeout(() => {
                 onComplete()
             }, 2000)
