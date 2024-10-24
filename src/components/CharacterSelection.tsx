@@ -1,14 +1,9 @@
 import React from 'react'
 import Image from "next/image";
+import Character from "@/types/Charecter";
 
 interface CharacterSelectionProps {
-    onSelectCharacter: (character: string) => void
-}
-
-interface Character {
-    id: string
-    name: string
-    image: string
+    onSelectCharacter: (character: Character) => void
 }
 
 const characters: Character[] = [
@@ -29,7 +24,7 @@ const CharacterSelection: React.FC<CharacterSelectionProps> = ({ onSelectCharact
                         <div
                             key={character.id}
                             className="flex flex-col items-center cursor-pointer transform transition-transform hover:scale-105"
-                            onClick={() => onSelectCharacter(character.name)}
+                            onClick={() => onSelectCharacter(character)}
                         >
                             <Image
                                 src={character.image}

@@ -57,7 +57,7 @@ const FruitVegetableBerryGame: React.FC<GameProps> = ({ onComplete }) => {
             <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl">
                 <h1 className="text-2xl font-bold mb-4 text-center">Фрукты, овощи и ягоды</h1>
                 <p className="mb-4 text-center">
-                    Рядом с фруктом вставьте звездочку красного цвета, рядом с овощами - синего цвета, рядом с ягодами - красного цвета.
+                    Ягоды - синие, фрукты - красные, овощи - зеленые.
                 </p>
 
                 <div className="grid grid-cols-3 gap-4 mb-6">

@@ -43,17 +43,20 @@ const AnimalHomesGame: React.FC<GameProps> = ({ onComplete }) => {
     }
 
     const handleHomeClick = (homeIndex: number) => {
+        const newHomes = [...homes]
+        const currentAnimal = newHomes[homeIndex].animal;
+
         if (selectedAnimal) {
-            const newHomes = [...homes]
-            if (newHomes[homeIndex].animal) {
-                // If there's already an animal in this home, put it back in the selection
-                const animalToRemove = newHomes[homeIndex].animal
-                setSelectedAnimal(animals.find(a => a.id === animalToRemove) || null)
-            }
-            newHomes[homeIndex].animal = selectedAnimal.id
-            setHomes(newHomes)
-            setSelectedAnimal(null)
+            // Если выбрано новое животное, ставим его в домик
+            newHomes[homeIndex].animal = selectedAnimal.id;
+            setSelectedAnimal(null);
+        } else if (currentAnimal) {
+            // Если в домике уже есть животное, убираем его и ставим новое
+            // @ts-ignore
+            newHomes[homeIndex].animal = selectedAnimal ? selectedAnimal.id : null;
         }
+
+        setHomes(newHomes);
     }
 
     const checkAnswers = () => {

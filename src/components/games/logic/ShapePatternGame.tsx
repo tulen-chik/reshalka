@@ -42,16 +42,14 @@ const ShapePatternGame: React.FC<GameProps> = ({ onComplete }) => {
     }
 
     const handleCellClick = (cellIndex: number) => {
+        const newGrid = [...grid]
         if (selectedShape) {
-            const newGrid = [...grid]
             newGrid[cellIndex].shape = selectedShape.id
-            setGrid(newGrid)
             setSelectedShape(null)
         } else if (grid[cellIndex].shape) {
-            const newGrid = [...grid]
             newGrid[cellIndex].shape = null
-            setGrid(newGrid)
         }
+        setGrid(newGrid)
     }
 
     const checkAnswer = () => {
