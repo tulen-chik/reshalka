@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import NumberSequenceGame from './games/math/NumberSequenceGame'
 import TreeHeightGame from './games/logic/TreeHeightGame'
 import AnimalClassificationGame from './games/world/AnimalClassificationGame'
@@ -11,8 +11,8 @@ import PictureSequencingGame from "@/components/games/talk/PictureSequencingGame
 import SockCountingGame from "@/components/games/logic/SockCountingGame"
 import ShapePatternGame from "@/components/games/logic/ShapePatternGame"
 import ProfessionMatchingGame from "@/components/games/talk/ProfessionMatchingGame"
-import { Menu } from 'lucide-react'
-import CongratulatoryModal from "@/components/CongratulatoryModal";
+import { Home, Volume2, VolumeX } from 'lucide-react'
+import Image from "next/image";
 
 interface Game {
     component: React.ComponentType<{ onComplete: () => void }>
@@ -38,9 +38,9 @@ const worldGames: Game[] = [
 ]
 
 const talkGames: Game[] = [
-    { component: PictureSequencingGame, name: 'Расставь по порядку' },
     { component: ProfessionMatchingGame, name: 'Профессии' },
     { component: DescriptionMatchingGame, name: 'Подбери описание' },
+    { component: PictureSequencingGame, name: 'Расставь по порядку' },
 ]
 
 const categories = [
@@ -55,17 +55,49 @@ interface CongratulatoryModalProps {
     onClose: () => void
 }
 
+const CongratulatoryModal: React.FC<CongratulatoryModalProps> = ({ category, onClose }) => {
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
+                <h2 className="text-3xl font-bold mb-4 text-center text-green-600">Поздравляем!</h2>
+                <p className="text-xl mb-6 text-center">
+                    Вы успешно прошли все игры в категории "{category}"!
+                </p>
+                <div className="flex justify-center">
+                    <button
+                        onClick={onClose}
+                        className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200"
+                    >
+                        Вернуться к выбору категории
+                    </button>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 const Games: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<Game[] | null>(null)
     const [currentGameIndex, setCurrentGameIndex] = useState(0)
-    const [showMenu, setShowMenu] = useState(false)
     const [showCongratulations, setShowCongratulations] = useState(false)
+    const [isMusicPlaying, setIsMusicPlaying] = useState(true)
+    const audioRef = useRef<HTMLAudioElement>(null)
+
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.volume = 0.3
+            audioRef.current.loop = true
+            if (isMusicPlaying) {
+                audioRef.current.play().catch(error => console.error("Audio playback failed:", error))
+            } else {
+                audioRef.current.pause()
+            }
+        }
+    }, [isMusicPlaying])
 
     const handleCategorySelect = (games: Game[]) => {
         setSelectedCategory(games)
         setCurrentGameIndex(0)
-        setShowMenu(false)
     }
 
     const handleGameComplete = () => {
@@ -76,14 +108,19 @@ const Games: React.FC = () => {
         }
     }
 
-    const toggleMenu = () => {
-        setShowMenu(!showMenu)
+    const handleReturnToStart = () => {
+        setSelectedCategory(null)
+        setCurrentGameIndex(0)
     }
 
     const handleCongratulationsClose = () => {
         setShowCongratulations(false)
         setSelectedCategory(null)
         setCurrentGameIndex(0)
+    }
+
+    const toggleMusic = () => {
+        setIsMusicPlaying(!isMusicPlaying)
     }
 
     const renderCategorySelection = () => (
@@ -111,39 +148,15 @@ const Games: React.FC = () => {
         )
     }
 
-    const renderMenu = () => (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div className="bg-white p-6 rounded-lg shadow-xl">
-                <h2 className="text-2xl font-bold mb-4">Меню</h2>
-                <button
-                    onClick={() => {
-                        setSelectedCategory(null)
-                        setShowMenu(false)
-                    }}
-                    className="block w-full px-4 py-2 mb-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200"
-                >
-                    Главное меню
-                </button>
-                <button
-                    onClick={() => setShowMenu(false)}
-                    className="block w-full px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition duration-200"
-                >
-                    Закрыть
-                </button>
-            </div>
-        </div>
-    )
-
     return (
         <div className="relative">
             {!selectedCategory ? renderCategorySelection() : renderGame()}
             <button
-                onClick={toggleMenu}
-                className="fixed bottom-4 right-4 p-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200"
+                onClick={handleReturnToStart}
+                className="fixed bottom-4 right-4 p-2 text-white rounded-full transition duration-200"
             >
-                <Menu size={50} />
+                <Image height={150} width={150} src={"/menu.png"} alt={"menu"} />
             </button>
-            {showMenu && renderMenu()}
             {showCongratulations && selectedCategory && (
                 <CongratulatoryModal
                     category={categories.find(cat => cat.games === selectedCategory)?.name || ''}
