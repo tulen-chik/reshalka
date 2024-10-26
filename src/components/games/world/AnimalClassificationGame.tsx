@@ -24,6 +24,7 @@ const AnimalClassificationGame: React.FC<GameProps> = ({ onComplete }) => {
     const [showResult, setShowResult] = useState(false);
 
     const handleSelection = (animalId: number, type: 'wild' | 'domestic') => {
+        setShowResult(false);
         setSelections(prev => ({
             ...prev,
             [animalId]: prev[animalId] === type ? null : type,
@@ -32,8 +33,6 @@ const AnimalClassificationGame: React.FC<GameProps> = ({ onComplete }) => {
 
     const checkAnswers = () => {
         setShowResult(true);
-
-        // Calculate correctness after showing results
         const allCorrect = animals.every(animal => isCorrect(animal));
 
         if (allCorrect) {
@@ -78,15 +77,15 @@ const AnimalClassificationGame: React.FC<GameProps> = ({ onComplete }) => {
                         </div>
                     ))}
                 </div>
-                {!showResult ? (
-                    <button
-                        onClick={checkAnswers}
-                        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-                    >
-                        Проверить
-                    </button>
-                ) : (
-                    <div className="text-center">
+                <button
+                    onClick={checkAnswers}
+                    className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+                >
+                    Проверить
+                </button>
+
+                {showResult && (
+                    <div className="text-center mt-4">
                         <p className={`text-xl font-bold mb-4 ${animals.every(isCorrect) ? 'text-green-600' : 'text-red-600'}`}>
                             {animals.every(isCorrect) ? 'Отлично! Все ответы правильные!' : 'Есть ошибки. Попробуй еще раз!'}
                         </p>

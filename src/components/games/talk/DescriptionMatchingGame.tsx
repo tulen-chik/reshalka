@@ -40,10 +40,12 @@ const DescriptionMatchingGame: React.FC<DescriptionMatchingGameProps> = ({ onCom
     const [showResult, setShowResult] = useState(false)
 
     const handleItemClick = (item: Item) => {
+        setShowResult(false);
         setSelectedItem(item)
     }
 
     const handleDescriptionClick = (descIndex: number) => {
+        setShowResult(false);
         const newDescriptions = [...descriptions]
         if (selectedItem) {
             // If an item is selected, place it in the description

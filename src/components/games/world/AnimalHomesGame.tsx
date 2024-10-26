@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import GameProps from "@/types/GameProps";
 
 interface Animal {
-    id: string
-    name: string
-    image: string
+    id: string;
+    name: string;
+    image: string;
 }
 
 interface Home {
-    id: string
-    animal: string | null
+    id: string;
+    animal: string | null;
 }
 
 const animals: Animal[] = [
@@ -17,71 +17,73 @@ const animals: Animal[] = [
     { id: 'beaver', name: 'Бобр', image: '/world/beaver.png' },
     { id: 'squirrel', name: 'Белка', image: '/world/squirrely.png' },
     { id: 'fox', name: 'Лиса', image: '/world/lisa1.png' },
-]
+];
 
 const initialHomes: Home[] = [
     { id: 'home1', animal: null },
     { id: 'home2', animal: null },
     { id: 'home3', animal: null },
     { id: 'home4', animal: null },
-]
+];
 
 const correctPlacements = {
     home1: 'blackbird',
     home2: 'beaver',
     home3: 'squirrel',
     home4: 'fox',
-}
+};
 
 const AnimalHomesGame: React.FC<GameProps> = ({ onComplete }) => {
-    const [homes, setHomes] = useState<Home[]>(initialHomes)
-    const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null)
-    const [showResult, setShowResult] = useState(false)
+    const [homes, setHomes] = useState<Home[]>(initialHomes);
+    const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null);
+    const [showResult, setShowResult] = useState(false);
 
     const handleAnimalClick = (animal: Animal) => {
-        setSelectedAnimal(animal)
-    }
+        setShowResult(false);
+        setSelectedAnimal(animal);
+    };
 
     const handleHomeClick = (homeIndex: number) => {
-        const newHomes = [...homes]
+        setShowResult(false);
+        const newHomes = [...homes];
         const currentAnimal = newHomes[homeIndex].animal;
 
         if (selectedAnimal) {
-            // Если выбрано новое животное, ставим его в домик
             newHomes[homeIndex].animal = selectedAnimal.id;
             setSelectedAnimal(null);
         } else if (currentAnimal) {
-            // Если в домике уже есть животное, убираем его и ставим новое
-            // @ts-ignore
-            newHomes[homeIndex].animal = selectedAnimal ? selectedAnimal.id : null;
+            newHomes[homeIndex].animal = null;
         }
 
         setHomes(newHomes);
-    }
+    };
 
     const checkAnswers = () => {
-        setShowResult(true)
+        setShowResult(true);
+        const allCorrect = homes.every((home, index) => home.animal === correctPlacements[`home${index + 1}` as keyof typeof correctPlacements]);
+
         if (allCorrect) {
-            // Вызываем onComplete, когда игра успешно завершена
             setTimeout(() => {
-                onComplete()
-            }, 2000) // Задержка в 2 секунды, чтобы игрок успел увидеть результат
+                onComplete();
+            }, 2000);
         }
-    }
+    };
 
     const resetGame = () => {
-        setHomes(initialHomes)
-        setSelectedAnimal(null)
-        setShowResult(false)
-    }
+        setHomes(initialHomes);
+        setSelectedAnimal(null);
+        setShowResult(false);
+    };
 
-    const allCorrect = homes.every((home, index) => home.animal === correctPlacements[`home${index + 1}` as keyof typeof correctPlacements])
+    const isCorrect = (home: Home, index: number) => {
+        return home.animal === correctPlacements[`home${index + 1}` as keyof typeof correctPlacements];
+    };
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-brown-100 p-4">
             <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl">
                 <h1 className="text-2xl font-bold mb-4 text-center">Подбери каждому животному свой домик</h1>
-                <div className="relative w-full h-96 bg-cover bg-center mb-6" style={{backgroundImage: "url('/world/homes.png')"}}>
+                <div className="relative w-full h-96 bg-cover bg-center mb-6" style={{ backgroundImage: "url('/world/homes.png')" }}>
                     {homes.map((home, index) => (
                         <button
                             key={home.id}
@@ -117,23 +119,23 @@ const AnimalHomesGame: React.FC<GameProps> = ({ onComplete }) => {
                         </button>
                     ))}
                 </div>
-                {!showResult ? (
-                    <button
-                        onClick={checkAnswers}
-                        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-                    >
-                        Проверить
-                    </button>
-                ) : (
-                    <div className="text-center">
-                        <p className={`text-xl font-bold mb-4 ${allCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                            {allCorrect ? 'Отлично! Все животные в своих домиках!' : 'Есть ошибки. Попробуй еще раз!'}
+                <button
+                    onClick={checkAnswers}
+                    className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+                >
+                    Проверить
+                </button>
+
+                {showResult && (
+                    <div className="text-center mt-4">
+                        <p className={`text-xl font-bold mt-4 ${homes.every((home, index) => isCorrect(home, index)) ? 'text-green-600' : 'text-red-600'}`}>
+                            {homes.every((home, index) => isCorrect(home, index)) ? 'Отлично! Все животные в своих домиках!' : 'Есть ошибки. Попробуй еще раз!'}
                         </p>
                     </div>
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default AnimalHomesGame
+export default AnimalHomesGame;

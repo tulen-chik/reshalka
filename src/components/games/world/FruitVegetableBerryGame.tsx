@@ -24,6 +24,7 @@ const FruitVegetableBerryGame: React.FC<GameProps> = ({ onComplete }) => {
     const [showResult, setShowResult] = useState(false);
 
     const handleSelection = (itemId: number, color: 'red' | 'green' | 'blue') => {
+        setShowResult(false);
         setSelections(prev => ({
             ...prev,
             [itemId]: prev[itemId] === color ? null : color,
@@ -42,16 +43,20 @@ const FruitVegetableBerryGame: React.FC<GameProps> = ({ onComplete }) => {
 
         if (allCorrect) {
             setTimeout(() => {
-                onComplete(); // Call onComplete when all answers are correct
-            }, 2000); // 2 second delay for completion
+                onComplete();
+            }, 2000);
         }
 
         // Reset the showResult state after some delay
         setTimeout(() => {
-            setShowResult(false);
+            if (items.every(item => isCorrect(item))) {
+                    onComplete();
+            } else {
+                setShowResult(false);
+            }
         }, 4000);
     };
-    
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-yellow-100 p-4">
             <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl">

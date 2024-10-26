@@ -43,10 +43,12 @@ const ProfessionMatchingGame: React.FC<ProfessionMatchingGameProps> = ({ onCompl
     const [showResult, setShowResult] = useState(false)
 
     const handleProfessionClick = (profession: Profession) => {
+        setShowResult(false);
         setSelectedProfession(profession)
     }
 
     const handleDescriptionClick = (descIndex: number) => {
+        setShowResult(false);
         const newDescriptions = [...descriptions]
         if (selectedProfession) {
             if (newDescriptions[descIndex].profession) {
