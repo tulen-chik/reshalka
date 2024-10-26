@@ -119,17 +119,17 @@ const AnimalHomesGame: React.FC<GameProps> = ({ onComplete }) => {
                         </button>
                     ))}
                 </div>
-                <button
-                    onClick={checkAnswers}
-                    className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-                >
-                    Проверить
-                </button>
-
-                {showResult && (
+                {!showResult ? (
+                    <button
+                        onClick={checkAnswers}
+                        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+                    >
+                        Проверить
+                    </button>
+                ) : (
                     <div className="text-center mt-4">
                         <p className={`text-xl font-bold mt-4 ${homes.every((home, index) => isCorrect(home, index)) ? 'text-green-600' : 'text-red-600'}`}>
-                            {homes.every((home, index) => isCorrect(home, index)) ? 'Отлично! Все животные в своих домиках!' : 'Есть ошибки. Попробуй еще раз!'}
+                        {homes.every((home, index) => isCorrect(home, index)) ? 'Отлично! Все животные в своих домиках!' : 'Есть ошибки. Попробуй еще раз!'}
                         </p>
                     </div>
                 )}
